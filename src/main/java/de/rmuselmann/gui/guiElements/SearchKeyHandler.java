@@ -1,11 +1,18 @@
 package de.rmuselmann.gui.guiElements;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import de.rmuselmann.beanFacade.BeanFactory;
 import de.rmuselmann.entity.IFields;
 import de.rmuselmann.entity.ISong;
 import de.rmuselmann.gui.dialogs.GUIStart;
@@ -15,18 +22,18 @@ import de.rmuselmann.gui.events.ListEvent.ListChangeOption;
 import de.rmuselmann.gui.fxml.dialogs2.MainStage;
 
 public class SearchKeyHandler implements EventHandler<KeyEvent> {
-	String oldVal;
-	private ObservableList<ISong> filteredList = FXCollections
-			.observableArrayList();
+	private String oldVal = "";
+	private List<ISong> filteredList = new ArrayList<>();
 	private MainStage mainStage;
 	private VBox searchBox;
+	private TextField textField;
 
-	public SearchKeyHandler(final VBox searchBox, MainStage mainStage) {
+	public SearchKeyHandler(final VBox searchBox, MainStage mainStage, final TextField searchField) {
 		this.mainStage = mainStage;
 		this.searchBox = searchBox;
+		this.textField = searchField;
 
 		IListListener a = new IListListener() {
-
 			@Override
 			public void handleEvent(ListEvent e) {
 				if (searchBox.isVisible()) {
@@ -49,80 +56,68 @@ public class SearchKeyHandler implements EventHandler<KeyEvent> {
 
 					}
 
-					handleSearch(oldVal, oldVal);
+					doSearch(oldVal, oldVal);
 				}
 			}
 		};
 		GUIStart.getListListener().add(a);
 	}
 
-	@Override
-	public void handle(KeyEvent event) {
-		char ch = event.getCharacter().charAt(0);
-		// BackSpace
-		if (event.getCharacter().equals("\b")) {
-			String text = event.getText();
-			handleSearch(oldVal, text);
-			oldVal = text;
-		} else if ((ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'z')
-				|| (ch >= 'A' && ch <= 'Z')) {
+	final KeyCombination ESCAPE = new KeyCodeCombination(KeyCode.ESCAPE);
 
-			handleSearch(oldVal, event.getText() + ch);
-			oldVal = event.getText() + ch;
-			// Return
-		} else if (event.getCharacter().equals("\r")) {
-			handleSearch(oldVal, event.getText());
+	public void handle(KeyEvent event) {
+
+		if (ESCAPE.match(event)) {
+			searchBox.setVisible(false);
+			searchBox.setPrefHeight(0);
+			mainStage.updateTable();
+		} else {
+			oldVal = doSearch(textField.getText(), oldVal);
 		}
 	}
 
-	public void handleSearch(String oldVal, String newVal) {
+	private String doSearch(String newVal, String oldVal) {
 		ObservableList<ISong> tmpList = FXCollections.observableArrayList();
 
-		if (newVal != null && newVal.equals("")) {
+		if (newVal != null && newVal.equals("") && !newVal.equals(oldVal)) {
+			filteredList = null;
 			mainStage.updateTable();
-
 		} else {
-			// If the number of characters in the text box is less than last
+			// If the number of characters in the text box is less than
+			// last
 			// time
 			// it must be because the user pressed delete
-			if (oldVal != null && (newVal.length() < oldVal.length())) {
-				// Restore the lists original set of entries
-				// and start from the beginning
-				mainStage.updateTable();
+
+			// Restore the lists original set of entries
+			// and start from the beginning
+			if ((filteredList == null || filteredList.isEmpty()) || (oldVal != null && (newVal.length() < oldVal.length()))) {
+				filteredList = BeanFactory.getSongBeanFacade().getSongs(null);
 			}
+
 			// Break out all of the parts of the search text
 			// by splitting on white space
 			String[] parts = newVal.toLowerCase().split(" ");
 			// ObservableList<ISong> list = tableView.getItems();
 			// for (int i = 0; i < list.size(); i++) {
 			// ISong song = list.get(i);
-			for (ISong song : mainStage.getTableViewAvailable().getItems()) {
+			for (ISong song : filteredList) {
 				int counter = 0;
 				for (String text : parts) {
 					String albumName = "";
 					String interpretName = "";
 					String tanzartName = "";
-					if (!song.getAlbum().equals(
-							IFields.NullObjects.ALBUM.getObject())) {
-						albumName = song.getAlbum().getAlbumName()
-								.toLowerCase();
+					if (!song.getAlbum().equals(IFields.NullObjects.ALBUM.getObject())) {
+						albumName = song.getAlbum().getAlbumName().toLowerCase();
 					}
 
-					if (!song.getTanzart().equals(
-							IFields.NullObjects.TANZART.getObject())) {
-						tanzartName = song.getTanzart().getTanzartName()
-								.toLowerCase();
+					if (!song.getTanzart().equals(IFields.NullObjects.TANZART.getObject())) {
+						tanzartName = song.getTanzart().getTanzartName().toLowerCase();
 					}
-					if (!song.getInterpret().equals(
-							IFields.NullObjects.INTERPRET.getObject())) {
-						interpretName = song.getInterpret().getInterpretName()
-								.toLowerCase();
+					if (!song.getInterpret().equals(IFields.NullObjects.INTERPRET.getObject())) {
+						interpretName = song.getInterpret().getInterpretName().toLowerCase();
 					}
 
-					if (albumName.contains(text)
-							|| interpretName.contains(text)
-							|| tanzartName.contains(text)
-							|| song.getTitle().toLowerCase().contains(text)) {
+					if (albumName.contains(text) || interpretName.contains(text) || tanzartName.contains(text) || song.getTitle().toLowerCase().contains(text)) {
 						counter++;
 					}
 				}
@@ -131,7 +126,9 @@ public class SearchKeyHandler implements EventHandler<KeyEvent> {
 				}
 			}
 			filteredList = tmpList;
-			mainStage.getTableViewAvailable().setItems(filteredList);
+			mainStage.getTableViewAvailable().getItems().setAll(filteredList);
 		}
-	}
+		return newVal;
+	};
+
 }

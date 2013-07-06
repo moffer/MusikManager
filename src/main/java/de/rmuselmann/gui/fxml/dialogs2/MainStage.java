@@ -14,8 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
@@ -140,31 +138,20 @@ public class MainStage extends FXMLStage {
 				GUIStart.exit();
 			}
 		});
-		searchField.setOnKeyTyped(new SearchKeyHandler(searchBox, this));
-		searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent event) {
-				if (event.getCode().equals(KeyCode.ESCAPE)) {
-					searchBox.setVisible(false);
-					searchBox.setPrefHeight(0);
-					updateTable();
-				}
-			};
-		});
+
+		searchField.setOnKeyReleased(new SearchKeyHandler(searchBox, this, searchField));
 	}
 
 	public void updateTable() {
 		SongBeanFacade songBeanFacade = BeanFactory.getSongBeanFacade();
-		List<TableConfiguration> list = songBeanFacade
-				.updateTableConfigurations();
+		List<TableConfiguration> list = songBeanFacade.updateTableConfigurations();
 		List<TableColumn<ISong, String>> columns = new ArrayList<>();
 		for (TableConfiguration tableConfiguration : list) {
-			columns.add(createColumn(tableConfiguration.getColumnName(),
-					tableConfiguration.getReflectionName()));
+			columns.add(createColumn(tableConfiguration.getColumnName(), tableConfiguration.getReflectionName()));
 		}
 		tableViewAvailable.getColumns().clear();
 		tableViewAvailable.getColumns().addAll(columns);
-		final WaitDialogV2 w = (WaitDialogV2) Loader.load(new WaitDialogV2()
-				.getFXMLPath());
+		final WaitDialogV2 w = (WaitDialogV2) Loader.load(new WaitDialogV2().getFXMLPath());
 		w.setData(this, "Lade Daten", "Die Tabelle wird aktualisiert", true);
 		w.show();
 
@@ -175,9 +162,7 @@ public class MainStage extends FXMLStage {
 				return new Task<Void>() {
 					@Override
 					protected Void call() throws Exception {
-						tableViewAvailable.getItems().setAll(
-								BeanFactory.getSongBeanFacade().getSongs(
-										new ProgressWaitDialogListener(w)));
+						tableViewAvailable.getItems().setAll(BeanFactory.getSongBeanFacade().getSongs(new ProgressWaitDialogListener(w)));
 						return null;
 					}
 				};
@@ -191,13 +176,9 @@ public class MainStage extends FXMLStage {
 		s.start();
 	}
 
-	private TableColumn<ISong, String> createColumn(String columnName,
-			String columnReflect) {
-		TableColumn<ISong, String> interpretColumn = new TableColumn<ISong, String>(
-				columnName);
-		interpretColumn
-				.setCellValueFactory(new PropertyValueFactory<ISong, String>(
-						columnReflect));
+	private TableColumn<ISong, String> createColumn(String columnName, String columnReflect) {
+		TableColumn<ISong, String> interpretColumn = new TableColumn<ISong, String>(columnName);
+		interpretColumn.setCellValueFactory(new PropertyValueFactory<ISong, String>(columnReflect));
 		return interpretColumn;
 	}
 
