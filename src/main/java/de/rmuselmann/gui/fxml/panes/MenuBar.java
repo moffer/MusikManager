@@ -17,6 +17,8 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import de.rmuselmann.gui.dialogs.GUIStart;
 import de.rmuselmann.gui.fxml.FXMLPane;
+import de.rmuselmann.gui.fxml.StageLoader;
+import de.rmuselmann.gui.fxml.dialogs2.InfoDialog;
 import de.rmuselmann.gui.fxml.dialogs2.MainStage;
 import de.rmuselmann.gui.guiElements.SearchKeyHandler;
 
@@ -151,7 +153,9 @@ public class MenuBar extends FXMLPane implements Initializable {
 		infoMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-
+				InfoDialog d = (InfoDialog) StageLoader.load(new InfoDialog().getFXMLPath());
+				d.setData(mainStage);
+				d.show();
 			}
 		});
 	}

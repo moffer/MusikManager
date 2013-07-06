@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane id="BorderPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.dialogs2.InfoDialog">
+  <center>
+    <VBox alignment="CENTER_LEFT" prefHeight="85.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+      <children>
+        <Label text="Kisumu" underline="true" />
+        <Label fx:id="versionLabel" text="Version: ${project.version}" />
+        <Label text="Entwickelt von: Rafael Muselmann" />
+        <Label text="Infos und Hilfe: rafael.muselmann@gmx.de" />
+      </children>
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+    </VBox>
+  </center>
+</BorderPane>
