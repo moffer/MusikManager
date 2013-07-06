@@ -1,4 +1,4 @@
-package de.rmuselmann.gui.fxml.dialogs2;
+package de.rmuselmann.gui.fxml.panes;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import de.rmuselmann.gui.dialogs.GUIStart;
 import de.rmuselmann.gui.fxml.FXMLPane;
+import de.rmuselmann.gui.fxml.dialogs2.MainStage;
 import de.rmuselmann.gui.guiElements.SearchKeyHandler;
 
 public class MenuBar extends FXMLPane implements Initializable {

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<BorderPane id="StackPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.dialogs2.MenuBar">
+<BorderPane id="StackPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.panes.MenuBar">
   <center>
     <MenuBar>
       <menus>

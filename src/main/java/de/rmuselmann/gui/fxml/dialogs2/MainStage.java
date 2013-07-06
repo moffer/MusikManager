@@ -25,6 +25,7 @@ import de.rmuselmann.gui.events.ProgressWaitDialogListener;
 import de.rmuselmann.gui.fxml.FXMLStage;
 import de.rmuselmann.gui.fxml.PaneLoader;
 import de.rmuselmann.gui.fxml.StageLoader;
+import de.rmuselmann.gui.fxml.panes.MenuBar;
 import de.rmuselmann.gui.guiElements.SearchKeyHandler;
 import de.rmuselmann.logic.impl.PropertyReader;
 
