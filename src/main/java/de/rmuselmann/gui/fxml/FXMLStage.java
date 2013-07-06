@@ -24,7 +24,7 @@ public abstract class FXMLStage extends Stage implements IFXMLStage {
 		this.primaryStage = primaryStage;
 	}
 
-	public Logger getLOGGER() {
+	public Logger getLogger() {
 		return LOGGER;
 	}
 }

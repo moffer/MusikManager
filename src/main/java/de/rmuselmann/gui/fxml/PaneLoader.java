@@ -9,22 +9,20 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 
-public class Loader {
+public class PaneLoader {
 
-	public static FXMLStage load(String fxmlFile) throws FxmlLoadException {
+	public static FXMLPane load(String fxmlFile) throws FxmlLoadException {
 		return load(fxmlFile, null, null);
 	}
 
-	public static FXMLStage load(String fxmlFile, String resourceBundle)
-			throws FxmlLoadException {
+	public static FXMLPane load(String fxmlFile, String resourceBundle) throws FxmlLoadException {
 		return load(fxmlFile, ResourceBundle.getBundle(resourceBundle), null);
 	}
 
-	public static FXMLStage load(String fxmlFile, ResourceBundle resources,
-			Map<String, Object> variables) throws FxmlLoadException {
+	public static FXMLPane load(String fxmlFile, ResourceBundle resources, Map<String, Object> variables) throws FxmlLoadException {
 		InputStream fxmlStream = null;
 		try {
-			fxmlStream = Loader.class.getResourceAsStream(fxmlFile);
+			fxmlStream = PaneLoader.class.getResourceAsStream(fxmlFile);
 			FXMLLoader loader = new FXMLLoader();
 			loader.setBuilderFactory(new JavaFXBuilderFactory());
 
@@ -41,24 +39,20 @@ public class Loader {
 
 			loader.load(fxmlStream);
 
-			FXMLStage controller = (FXMLStage) loader.getController();
-			controller.initStage();
+			FXMLPane controller = (FXMLPane) loader.getController();
 			return controller;
 
 		} catch (Exception e) {
 			// map checked exception to a runtime exception - this is a system
 			// failure, not a business logic failure
 			// so using checked exceptions for this is not necessary.
-			throw new FxmlLoadException(String.format(
-					"Unable to load FXML from '%s': %s", fxmlFile,
-					e.getMessage()), e);
+			throw new FxmlLoadException(String.format("Unable to load FXML from '%s': %s", fxmlFile, e.getMessage()), e);
 		} finally {
 			if (fxmlStream != null) {
 				try {
 					fxmlStream.close();
 				} catch (IOException e) {
-					System.err.println("WARNING: error closing FXML stream: "
-							+ e);
+					System.err.println("WARNING: error closing FXML stream: " + e);
 					e.printStackTrace(System.err);
 				}
 			}

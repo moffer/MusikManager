@@ -22,7 +22,7 @@ import de.rmuselmann.gui.events.IProgressListener;
 import de.rmuselmann.gui.events.ListEvent;
 import de.rmuselmann.gui.events.ListEvent.ListChangeOption;
 import de.rmuselmann.gui.events.ProgressEvent;
-import de.rmuselmann.gui.fxml.Loader;
+import de.rmuselmann.gui.fxml.StageLoader;
 import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2;
 import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2.CannotConnectOption;
 import de.rmuselmann.gui.fxml.dialogs2.WaitDialogV2;
@@ -86,7 +86,7 @@ public class InsertFiles extends Task<Boolean> {
 						}
 					}
 				} else {
-					final CannotConnectDialogV2 can = (CannotConnectDialogV2) Loader
+					final CannotConnectDialogV2 can = (CannotConnectDialogV2) StageLoader
 							.load(new CannotConnectDialogV2().getFXMLPath());
 					can.setData(primaryStage);
 					can.show();

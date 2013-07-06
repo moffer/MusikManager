@@ -32,7 +32,7 @@ import de.rmuselmann.gui.extraClasses.DeleteFiles;
 import de.rmuselmann.gui.extraClasses.InsertFiles;
 import de.rmuselmann.gui.extraClasses.LoadSongDatabase;
 import de.rmuselmann.gui.extraClasses.TableClass;
-import de.rmuselmann.gui.fxml.Loader;
+import de.rmuselmann.gui.fxml.StageLoader;
 import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2;
 import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2.CannotConnectOption;
 import de.rmuselmann.gui.fxml.dialogs2.WaitDialogV2;
@@ -66,7 +66,7 @@ public class SongTableView extends TableClass<ISong> {
 					LOGGER.log(Level.INFO,
 							"CannotConnectDialog.close() aufgerufen.");
 					if (deleteDialog.isSure()) {
-						WaitDialogV2 waitDialog = (WaitDialogV2) Loader
+						WaitDialogV2 waitDialog = (WaitDialogV2) StageLoader
 								.load(new WaitDialogV2().getFXMLPath());
 						waitDialog
 								.setData(
@@ -129,7 +129,7 @@ public class SongTableView extends TableClass<ISong> {
 				} catch (IOException e) {
 					LOGGER.log(Level.INFO,
 							"Versuch gescheitert: " + e.getMessage());
-					final CannotConnectDialogV2 can = (CannotConnectDialogV2) Loader
+					final CannotConnectDialogV2 can = (CannotConnectDialogV2) StageLoader
 							.load(new CannotConnectDialogV2().getFXMLPath());
 					can.setData(primaryStage);
 					can.show();
@@ -149,7 +149,7 @@ public class SongTableView extends TableClass<ISong> {
 
 		};
 		// TODO with Status
-		final WaitDialogV2 waitDialog = (WaitDialogV2) Loader
+		final WaitDialogV2 waitDialog = (WaitDialogV2) StageLoader
 				.load(new WaitDialogV2().getFXMLPath());
 		waitDialog.setData(primaryStage, "Bitte warten",
 				"Die Lieder werden in den Ordner heruntergeladen.", false);
@@ -206,7 +206,7 @@ public class SongTableView extends TableClass<ISong> {
 				}
 			} catch (IOException e) {
 				LOGGER.log(Level.INFO, "Versuch gescheitert: " + e.getMessage());
-				final CannotConnectDialogV2 can = (CannotConnectDialogV2) Loader
+				final CannotConnectDialogV2 can = (CannotConnectDialogV2) StageLoader
 						.load(new CannotConnectDialogV2().getFXMLPath());
 				can.setData(primaryStage);
 				can.show();
@@ -234,7 +234,7 @@ public class SongTableView extends TableClass<ISong> {
 	public Task<Boolean> loadSongDatabase(Stage primaryStage,
 			TableClass<ISong> tableView) {
 		LOGGER.log(Level.INFO, "WaitDialog wird ge�ffnet.");
-		final WaitDialogV2 waitDialog = (WaitDialogV2) Loader
+		final WaitDialogV2 waitDialog = (WaitDialogV2) StageLoader
 				.load(new WaitDialogV2().getFXMLPath());
 		waitDialog.setData(primaryStage, "Bitte warten",
 				"Bitte warten. Die Daten werden geladen.", true);
@@ -318,7 +318,7 @@ public class SongTableView extends TableClass<ISong> {
 								LOGGER.log(Level.WARNING,
 										"Fehler: konnte keine Verbindung herstellen: "
 												+ e.getMessage());
-								final CannotConnectDialogV2 can = (CannotConnectDialogV2) Loader
+								final CannotConnectDialogV2 can = (CannotConnectDialogV2) StageLoader
 										.load(new CannotConnectDialogV2()
 												.getFXMLPath());
 								can.setData(primaryStage);
@@ -348,7 +348,7 @@ public class SongTableView extends TableClass<ISong> {
 					Level.WARNING,
 					"Fehler: konnte keine Verbindung herstellen:"
 							+ e.getMessage());
-			final CannotConnectDialogV2 can = (CannotConnectDialogV2) Loader
+			final CannotConnectDialogV2 can = (CannotConnectDialogV2) StageLoader
 					.load(new CannotConnectDialogV2().getFXMLPath());
 			can.setData(primaryStage);
 			can.show();
@@ -404,7 +404,7 @@ public class SongTableView extends TableClass<ISong> {
 
 		if (listOfMP3Files.size() > 0) {
 			LOGGER.log(Level.INFO, "�ffne WaitDialog.");
-			final WaitDialogV2 waitDialog = (WaitDialogV2) Loader
+			final WaitDialogV2 waitDialog = (WaitDialogV2) StageLoader
 					.load(new WaitDialogV2().getFXMLPath());
 			waitDialog
 					.setData(

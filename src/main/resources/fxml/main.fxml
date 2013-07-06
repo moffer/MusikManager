@@ -110,11 +110,11 @@
     </TabPane>
   </center>
   <top>
-    <MenuBar>
+    <!--<MenuBar>
       <menus>
-        <Menu mnemonicParsing="false" text="Datei">
+        <Menu text="Datei">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#onUpdateTable" text="Tabelle aktualisieren" />
+            <MenuItem onAction="#onUpdateTable" style="" text="Tabelle aktualisieren" />
             <MenuItem mnemonicParsing="false" onAction="#onExit" text="Beenden" />
           </items>
         </Menu>
@@ -147,6 +147,6 @@
           </items>
         </Menu>
       </menus>
-    </MenuBar>
+    </MenuBar>-->
   </top>
 </BorderPane>

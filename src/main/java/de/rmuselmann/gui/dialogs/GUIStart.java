@@ -19,7 +19,7 @@ import de.rmuselmann.beanFacade.BeanFactory;
 import de.rmuselmann.database.dao.impl.ConnectionManager;
 import de.rmuselmann.gui.ConnectToDatabaseTask;
 import de.rmuselmann.gui.events.ListListenerCaster;
-import de.rmuselmann.gui.fxml.Loader;
+import de.rmuselmann.gui.fxml.StageLoader;
 import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2;
 import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2.CannotConnectOption;
 import de.rmuselmann.gui.fxml.dialogs2.MainStage;
@@ -100,7 +100,7 @@ public class GUIStart extends Application {
 
 		GUIStart.primaryStage = primaryStage;
 
-		final MainStage mainStage = (MainStage) Loader.load(new MainStage().getFXMLPath());
+		final MainStage mainStage = (MainStage) StageLoader.load(new MainStage().getFXMLPath());
 		mainStage.setData();
 
 		// final SongTableView tableView = new SongTableView(
@@ -139,7 +139,7 @@ public class GUIStart extends Application {
 		// tableView.setContextMenu(contextMenu);
 
 		LOGGER.log(Level.INFO, "Erzeuge WaitDialog.");
-		final WaitDialogV2 wd = (WaitDialogV2) Loader.load(new WaitDialogV2().getFXMLPath());
+		final WaitDialogV2 wd = (WaitDialogV2) StageLoader.load(new WaitDialogV2().getFXMLPath());
 		wd.setData(mainStage, "Datenbankverbindung wird aufgebaut", "Die Verbindung zur Datenbank wird aufgebaut!", false);
 		wd.show();
 
@@ -170,7 +170,7 @@ public class GUIStart extends Application {
 				LOGGER.log(Level.INFO, "WaitDialog geschlossen.");
 
 				LOGGER.log(Level.INFO, "Erzeuge CannotConnectDialog.");
-				final CannotConnectDialogV2 cannotConnectDialog = (CannotConnectDialogV2) Loader.load(new CannotConnectDialogV2().getFXMLPath());
+				final CannotConnectDialogV2 cannotConnectDialog = (CannotConnectDialogV2) StageLoader.load(new CannotConnectDialogV2().getFXMLPath());
 				cannotConnectDialog.setData(mainStage);
 				cannotConnectDialog.show();
 				cannotConnectDialog.setOnHiding(new EventHandler<WindowEvent>() {
