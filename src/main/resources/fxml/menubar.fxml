@@ -6,42 +6,42 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<BorderPane id="StackPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.dialogs2.MenuBar">
+<BorderPane id="StackPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.dialogs2.MenuBar">
   <center>
     <MenuBar>
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
           <items>
-            <MenuItem onAction="#onUpdateTable" style="" text="Tabelle aktualisieren" />
-            <MenuItem mnemonicParsing="false" onAction="#onExit" text="Beenden" />
+            <MenuItem style="" text="Tabelle aktualisieren" fx:id="updateTableMenuItem" />
+            <MenuItem mnemonicParsing="false" text="Beenden" fx:id="exitMenuItem" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Bearbeiten">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#onNewSong" text="Neuer Song" />
-            <MenuItem mnemonicParsing="false" onAction="#onEditSong" text="Song bearbeiten" />
-            <MenuItem mnemonicParsing="false" onAction="#onDeleteSong" text="Song löschen" />
+            <MenuItem mnemonicParsing="false" text="Neuer Song" fx:id="newSongMenuItem" />
+            <MenuItem mnemonicParsing="false" text="Song bearbeiten" fx:id="editSongMenuItem" />
+            <MenuItem mnemonicParsing="false" text="Song löschen" fx:id="deleteSongMenuItem" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Cloud">
           <items>
             <Menu mnemonicParsing="false" text="Upload">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#onUploadFiles" text="Songs von Dateien hochladen" />
-                <MenuItem mnemonicParsing="false" onAction="#onUploadFolder" text="Ordner hochladen" />
+                <MenuItem mnemonicParsing="false" text="Songs von Dateien hochladen" fx:id="uploadFilesMenuItem" />
+                <MenuItem mnemonicParsing="false" text="Ordner hochladen" fx:id="uploadFolderMenuItem" />
               </items>
             </Menu>
-            <MenuItem mnemonicParsing="false" onAction="#onDownload" text="Download" />
+            <MenuItem mnemonicParsing="false" text="Download" fx:id="downloadMenuItem" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Extras">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#onSearch" text="Suche" />
+            <MenuItem mnemonicParsing="false" text="Suche" fx:id="searchMenuItem" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Hilfe">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#onInfo" text="Info" />
+            <MenuItem mnemonicParsing="false" text="Info" fx:id="infoMenuItem" />
           </items>
         </Menu>
       </menus>
