@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane id="BorderPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.dialogs2.MainStage">
+  <center>
+    <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+      <contextMenu>
+        <ContextMenu>
+          <items>
+            <MenuItem mnemonicParsing="false" text="Song verändern" />
+            <MenuItem mnemonicParsing="false" text="Song herunterladen" />
+          </items>
+        </ContextMenu>
+      </contextMenu>
+      <tabs>
+        <Tab text="Verfügbare Songs">
+          <content>
+            <BorderPane>
+              <bottom>
+                <BorderPane>
+                  <center>
+                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                      <children>
+                        <Label text="Optionen:" />
+                        <Button mnemonicParsing="false" style="-fx-base: green;" styleClass="null" text="Download" textAlignment="CENTER" />
+                      </children>
+                      <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+                      </BorderPane.margin>
+                    </HBox>
+                  </center>
+                  <top>
+                    <VBox fx:id="searchBox" minHeight="0.0" minWidth="0.0" prefHeight="0.0" visible="false">
+                      <children>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="0.0" spacing="5.0" VBox.margin="$x1" VBox.vgrow="NEVER">
+                          <children>
+                            <Label alignment="CENTER" contentDisplay="CENTER" text="Suche:" />
+                            <TextField fx:id="searchField" prefWidth="200.0" />
+                          </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                      </children>
+                      <BorderPane.margin>
+                        <Insets />
+                      </BorderPane.margin>
+                    </VBox>
+                  </top>
+                </BorderPane>
+              </bottom>
+              <center>
+                <TableView id="tableView" fx:id="tableViewAvailable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                  <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" fx:id="x2" />
+                  </columnResizePolicy>
+                </TableView>
+              </center>
+            </BorderPane>
+          </content>
+        </Tab>
+        <Tab text="Gewünschte Songs">
+          <content>
+            <BorderPane>
+              <bottom>
+                <BorderPane>
+                  <center>
+                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                      <children>
+                        <Label text="Optionen:" />
+                        <Button mnemonicParsing="false" style="-fx-base: green;" styleClass="null" text="Download" textAlignment="CENTER" />
+                      </children>
+                      <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+                      </BorderPane.margin>
+                    </HBox>
+                  </center>
+                  <top>
+                    <VBox id="searchBox" minHeight="0.0" minWidth="0.0" prefHeight="0.0" visible="false">
+                      <children>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="0.0" spacing="5.0" VBox.vgrow="NEVER">
+                          <children>
+                            <Label alignment="CENTER" contentDisplay="CENTER" text="Suche:" />
+                            <TextField prefWidth="200.0" />
+                          </children>
+                          <VBox.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+                          </VBox.margin>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                      </children>
+                      <BorderPane.margin>
+                        <Insets />
+                      </BorderPane.margin>
+                    </VBox>
+                  </top>
+                </BorderPane>
+              </bottom>
+              <center>
+                <TableView id="tableView" columnResizePolicy="$x2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" />
+              </center>
+            </BorderPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </center>
+  <top>
+    <MenuBar>
+      <menus>
+        <Menu mnemonicParsing="false" text="Datei">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#onUpdateTable" text="Tabelle aktualisieren" />
+            <MenuItem mnemonicParsing="false" onAction="#onExit" text="Beenden" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Bearbeiten">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#onNewSong" text="Neuer Song" />
+            <MenuItem mnemonicParsing="false" onAction="#onEditSong" text="Song bearbeiten" />
+            <MenuItem mnemonicParsing="false" onAction="#onDeleteSong" text="Song löschen" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Cloud">
+          <items>
+            <Menu mnemonicParsing="false" text="Upload">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onUploadFiles" text="Songs von Dateien hochladen" />
+                <MenuItem mnemonicParsing="false" onAction="#onUploadFolder" text="Ordner hochladen" />
+              </items>
+            </Menu>
+            <MenuItem mnemonicParsing="false" onAction="#onDownload" text="Download" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Extras">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#onSearch" text="Suche" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Hilfe">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#onInfo" text="Info" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+</BorderPane>
