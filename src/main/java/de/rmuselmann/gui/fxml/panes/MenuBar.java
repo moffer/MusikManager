@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import de.rmuselmann.gui.dialogs.GUIStart;
 import de.rmuselmann.gui.fxml.FXMLPane;
 import de.rmuselmann.gui.fxml.StageLoader;
+import de.rmuselmann.gui.fxml.dialogs2.ChangeSongDialog;
 import de.rmuselmann.gui.fxml.dialogs2.InfoDialog;
 import de.rmuselmann.gui.fxml.dialogs2.MainStage;
 import de.rmuselmann.gui.guiElements.SearchKeyHandler;
@@ -86,7 +87,9 @@ public class MenuBar extends FXMLPane implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO
-				// new ChangeSongDialog(this, tableView, null);
+				ChangeSongDialog d = (ChangeSongDialog) StageLoader.load(new ChangeSongDialog().getFXMLPath());
+				d.setData(mainStage, null);
+				d.show();
 			}
 		});
 

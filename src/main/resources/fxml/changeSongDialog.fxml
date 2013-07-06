@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane id="BorderPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" padding="$x1" prefHeight="156.0" prefWidth="265.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.dialogs2.ChangeSongDialog">
+  <bottom>
+    <HBox alignment="BOTTOM_RIGHT" spacing="5.0">
+      <children>
+        <Button defaultButton="true" mnemonicParsing="false" text="Speichern" />
+        <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancel" text="Abbrechen" />
+      </children>
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+      </padding>
+    </HBox>
+  </bottom>
+  <center>
+    <GridPane alignment="CENTER" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+      <children>
+        <Label text="Tanzart:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label text="Interpret:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label text="Album:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label text="Titel:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="interpretField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="titleField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="albumField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="danceField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="65.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="170.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <BorderPane.margin>
+        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+      </BorderPane.margin>
+    </GridPane>
+  </center>
+</BorderPane>
