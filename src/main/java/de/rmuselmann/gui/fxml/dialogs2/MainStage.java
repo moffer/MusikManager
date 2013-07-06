@@ -111,6 +111,10 @@ public class MainStage extends FXMLStage {
 		searchBox.setPrefHeight(30);
 		searchBox.setVisible(true);
 		searchField.requestFocus();
+		if (searchField.getOnKeyReleased() != null && searchField.getText() != null) {
+			((SearchKeyHandler) searchField.getOnKeyReleased()).doSearch(searchField.getText(), null);
+		}
+
 		searchField.selectAll();
 	}
 

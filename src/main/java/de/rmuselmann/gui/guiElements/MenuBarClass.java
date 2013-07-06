@@ -140,7 +140,6 @@ public class MenuBarClass extends MenuBar {
 			public void handle(ActionEvent arg0) {
 				GUIStart.getScreenVBox().getChildren().add(2, searchBox);
 				searchBox.setVisible(true);
-				GUIStart.setHeightPropertyOfTabPane();
 				searchBox.getSearchField().requestFocus();
 			}
 		});

@@ -76,10 +76,10 @@ public class SearchKeyHandler implements EventHandler<KeyEvent> {
 		}
 	}
 
-	private String doSearch(String newVal, String oldVal) {
+	public String doSearch(String newVal, String oldVal) {
 		ObservableList<ISong> tmpList = FXCollections.observableArrayList();
 
-		if (newVal != null && newVal.equals("") && !newVal.equals(oldVal)) {
+		if (newVal == null || (newVal != null && newVal.equals("") && !newVal.equals(oldVal))) {
 			filteredList = null;
 			mainStage.updateTable();
 		} else {

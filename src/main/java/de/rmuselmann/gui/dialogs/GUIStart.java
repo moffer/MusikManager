@@ -11,7 +11,6 @@ import java.util.logging.SimpleFormatter;
 import javafx.application.Application;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -25,7 +24,6 @@ import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2;
 import de.rmuselmann.gui.fxml.dialogs2.CannotConnectDialogV2.CannotConnectOption;
 import de.rmuselmann.gui.fxml.dialogs2.MainStage;
 import de.rmuselmann.gui.fxml.dialogs2.WaitDialogV2;
-import de.rmuselmann.gui.guiElements.MenuBarClass;
 
 public class GUIStart extends Application {
 
@@ -34,11 +32,7 @@ public class GUIStart extends Application {
 	private static FileChooser chooserForMP3;
 
 	private static VBox screenVBox;
-	private final static Logger LOGGER = Logger.getLogger(GUIStart.class
-			.getName());
-	private static TabPane tabpane;
-	private static MenuBarClass menu;
-	private static int heightSubtractOfTabPane;
+	private final static Logger LOGGER = Logger.getLogger(GUIStart.class.getName());
 
 	/**
 	 * Beendet das Programm.
@@ -70,7 +64,6 @@ public class GUIStart extends Application {
 		return screenVBox;
 	}
 
-
 	public static Stage getStage() {
 		return primaryStage;
 	}
@@ -90,20 +83,6 @@ public class GUIStart extends Application {
 		Application.launch(GUIStart.class, args);
 	}
 
-	// TODO Delete
-	public static void setHeightPropertyOfTabPane() {
-		if (menu.getSearchBox().isVisible()) {
-			tabpane.prefHeightProperty().bind(
-					primaryStage.heightProperty().subtract(
-							heightSubtractOfTabPane
-									+ menu.getSearchBox().getPrefHeight()));
-		} else {
-			tabpane.prefHeightProperty().bind(
-					primaryStage.heightProperty().subtract(
-							heightSubtractOfTabPane));
-		}
-	}
-
 	/**
 	 * @param songs
 	 *            the songs to set
@@ -115,16 +94,13 @@ public class GUIStart extends Application {
 	@Override
 	public void start(final Stage primaryStage) {
 		chooserForMP3 = new FileChooser();
-		FileChooser.ExtensionFilter filterMP3 = new FileChooser.ExtensionFilter(
-				"MP3 Files (*.mp3)", "*.mp3");
-		FileChooser.ExtensionFilter filterAll = new FileChooser.ExtensionFilter(
-				"Alle (*.*)", "*.*");
+		FileChooser.ExtensionFilter filterMP3 = new FileChooser.ExtensionFilter("MP3 Files (*.mp3)", "*.mp3");
+		FileChooser.ExtensionFilter filterAll = new FileChooser.ExtensionFilter("Alle (*.*)", "*.*");
 		chooserForMP3.getExtensionFilters().addAll(filterMP3, filterAll);
 
 		GUIStart.primaryStage = primaryStage;
 
-		final MainStage mainStage = (MainStage) Loader.load(new MainStage()
-				.getFXMLPath());
+		final MainStage mainStage = (MainStage) Loader.load(new MainStage().getFXMLPath());
 		mainStage.setData();
 
 		// final SongTableView tableView = new SongTableView(
@@ -163,10 +139,8 @@ public class GUIStart extends Application {
 		// tableView.setContextMenu(contextMenu);
 
 		LOGGER.log(Level.INFO, "Erzeuge WaitDialog.");
-		final WaitDialogV2 wd = (WaitDialogV2) Loader.load(new WaitDialogV2()
-				.getFXMLPath());
-		wd.setData(mainStage, "Datenbankverbindung wird aufgebaut",
-				"Die Verbindung zur Datenbank wird aufgebaut!", false);
+		final WaitDialogV2 wd = (WaitDialogV2) Loader.load(new WaitDialogV2().getFXMLPath());
+		wd.setData(mainStage, "Datenbankverbindung wird aufgebaut", "Die Verbindung zur Datenbank wird aufgebaut!", false);
 		wd.show();
 
 		ConnectToDatabaseTask s = new ConnectToDatabaseTask();
@@ -196,26 +170,21 @@ public class GUIStart extends Application {
 				LOGGER.log(Level.INFO, "WaitDialog geschlossen.");
 
 				LOGGER.log(Level.INFO, "Erzeuge CannotConnectDialog.");
-				final CannotConnectDialogV2 cannotConnectDialog = (CannotConnectDialogV2) Loader
-						.load(new CannotConnectDialogV2().getFXMLPath());
+				final CannotConnectDialogV2 cannotConnectDialog = (CannotConnectDialogV2) Loader.load(new CannotConnectDialogV2().getFXMLPath());
 				cannotConnectDialog.setData(mainStage);
 				cannotConnectDialog.show();
-				cannotConnectDialog
-						.setOnHiding(new EventHandler<WindowEvent>() {
-							@Override
-							public void handle(WindowEvent event) {
-								LOGGER.log(Level.INFO,
-										"CannotConnectDialog.close() aufgerufen.");
-								if (cannotConnectDialog.getOption().equals(
-										CannotConnectOption.AGAIN)) {
-									LOGGER.log(Level.INFO,
-											"Wiederhole Guistart.");
-									start(mainStage);
-								} else {
-									GUIStart.exit();
-								}
-							}
-						});
+				cannotConnectDialog.setOnHiding(new EventHandler<WindowEvent>() {
+					@Override
+					public void handle(WindowEvent event) {
+						LOGGER.log(Level.INFO, "CannotConnectDialog.close() aufgerufen.");
+						if (cannotConnectDialog.getOption().equals(CannotConnectOption.AGAIN)) {
+							LOGGER.log(Level.INFO, "Wiederhole Guistart.");
+							start(mainStage);
+						} else {
+							GUIStart.exit();
+						}
+					}
+				});
 
 			}
 		});
