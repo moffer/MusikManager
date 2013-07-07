@@ -6,9 +6,12 @@ import java.util.List;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -56,6 +59,19 @@ public class MainStage extends FXMLStage {
 		w.setData(this, searchField, searchBox);
 		w.getRoot().prefWidthProperty().bind(this.pane.widthProperty());
 		this.pane.setTop(w.getRoot());
+
+		ContextMenu contextmenu = new ContextMenu();
+		MenuItem change = new MenuItem("Song bearbeiten");
+		change.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				ChangeSongDialog d = (ChangeSongDialog) StageLoader.load(new ChangeSongDialog().getFXMLPath());
+				d.setData(getPrimaryStage(), tableViewAvailable.getSelectionModel().getSelectedItem());
+				d.show();
+			}
+		});
+		contextmenu.getItems().add(change);
+		this.tableViewAvailable.setContextMenu(contextmenu);
 
 		this.setTitle("Kisumana " + new PropertyReader().getProperty("version"));
 		this.setOnCloseRequest(new EventHandler<WindowEvent>() {

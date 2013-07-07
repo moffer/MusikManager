@@ -11,7 +11,6 @@ import java.util.logging.SimpleFormatter;
 import javafx.application.Application;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -28,10 +27,8 @@ import de.rmuselmann.gui.fxml.dialogs2.WaitDialogV2;
 public class GUIStart extends Application {
 
 	private static ListListenerCaster listListener = new ListListenerCaster();
-	private static Stage primaryStage;
 	private static FileChooser chooserForMP3;
 
-	private static VBox screenVBox;
 	private final static Logger LOGGER = Logger.getLogger(GUIStart.class.getName());
 
 	/**
@@ -55,17 +52,6 @@ public class GUIStart extends Application {
 	 */
 	public static ListListenerCaster getListListener() {
 		return listListener;
-	}
-
-	/**
-	 * @return the screenVBox
-	 */
-	public static VBox getScreenVBox() {
-		return screenVBox;
-	}
-
-	public static Stage getStage() {
-		return primaryStage;
 	}
 
 	public static void main(String[] args) {
@@ -97,8 +83,6 @@ public class GUIStart extends Application {
 		FileChooser.ExtensionFilter filterMP3 = new FileChooser.ExtensionFilter("MP3 Files (*.mp3)", "*.mp3");
 		FileChooser.ExtensionFilter filterAll = new FileChooser.ExtensionFilter("Alle (*.*)", "*.*");
 		chooserForMP3.getExtensionFilters().addAll(filterMP3, filterAll);
-
-		GUIStart.primaryStage = primaryStage;
 
 		final MainStage mainStage = (MainStage) StageLoader.load(new MainStage().getFXMLPath());
 		mainStage.setData();

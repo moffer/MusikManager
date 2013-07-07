@@ -10,14 +10,6 @@
 <BorderPane id="BorderPane" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.rmuselmann.gui.fxml.dialogs2.MainStage">
   <center>
     <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-      <contextMenu>
-        <ContextMenu>
-          <items>
-            <MenuItem mnemonicParsing="false" text="Song verändern" />
-            <MenuItem mnemonicParsing="false" text="Song herunterladen" />
-          </items>
-        </ContextMenu>
-      </contextMenu>
       <tabs>
         <Tab text="Verfügbare Songs">
           <content>
@@ -109,44 +101,4 @@
       </tabs>
     </TabPane>
   </center>
-  <top>
-    <!--<MenuBar>
-      <menus>
-        <Menu text="Datei">
-          <items>
-            <MenuItem onAction="#onUpdateTable" style="" text="Tabelle aktualisieren" />
-            <MenuItem mnemonicParsing="false" onAction="#onExit" text="Beenden" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Bearbeiten">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#onNewSong" text="Neuer Song" />
-            <MenuItem mnemonicParsing="false" onAction="#onEditSong" text="Song bearbeiten" />
-            <MenuItem mnemonicParsing="false" onAction="#onDeleteSong" text="Song löschen" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Cloud">
-          <items>
-            <Menu mnemonicParsing="false" text="Upload">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#onUploadFiles" text="Songs von Dateien hochladen" />
-                <MenuItem mnemonicParsing="false" onAction="#onUploadFolder" text="Ordner hochladen" />
-              </items>
-            </Menu>
-            <MenuItem mnemonicParsing="false" onAction="#onDownload" text="Download" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Extras">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#onSearch" text="Suche" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Hilfe">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#onInfo" text="Info" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>-->
-  </top>
 </BorderPane>

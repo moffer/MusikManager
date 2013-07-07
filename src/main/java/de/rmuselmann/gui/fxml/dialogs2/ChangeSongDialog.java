@@ -10,6 +10,7 @@ import de.rmuselmann.entity.ISong;
 import de.rmuselmann.gui.fxml.FXMLStage;
 
 public class ChangeSongDialog extends FXMLStage {
+	private ISong song;
 	@FXML
 	private Pane pane;
 	@FXML
@@ -32,6 +33,7 @@ public class ChangeSongDialog extends FXMLStage {
 	}
 
 	public void setData(Stage primaryStage, ISong song) {
+		this.song = song;
 		this.setPrimaryStage(primaryStage);
 		this.initOwner(primaryStage);
 		this.initModality(Modality.APPLICATION_MODAL);
@@ -52,7 +54,7 @@ public class ChangeSongDialog extends FXMLStage {
 			this.setTitle("Song einfügen");
 		}
 	}
-	
+
 	@FXML
 	public void onCancel() {
 		this.close();
