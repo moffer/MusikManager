@@ -12,7 +12,7 @@ import de.rmuselmann.logic.IUserLogic;
 /**
  * Klasse zum Bilden einer Logik
  * 
- * @author Rafael Muselmann
+ *
  * 
  */
 public abstract class LogicFac {
